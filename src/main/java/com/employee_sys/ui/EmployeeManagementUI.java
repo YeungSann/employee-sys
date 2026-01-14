@@ -112,8 +112,17 @@ public class EmployeeManagementUI extends JFrame {
         deleteItem.addActionListener(e -> {
             String id = getSelectedEmployeeId();
             if (id != null) {
-                int confirm = JOptionPane.showConfirmDialog(this,
-                        "ID: " + id + " を削除しますか？", "確認", JOptionPane.YES_NO_OPTION);
+                Object[] options = {"はい", "いいえ"}; // ボタンの言語を定義します
+                int confirm = JOptionPane.showOptionDialog(
+                        this,
+                        "ID: " + id + " を削除しますか？",
+                        "確認",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,     // 自ら定義している言語を使いません
+                        options,  // 日本語で定義しているボタンを使います
+                        options[0]
+                );
                 if (confirm == JOptionPane.YES_OPTION) {
                     tableModel.removeRow(employeeTable.getSelectedRow());
                 }
